@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Does Screen Time Affect Students' Sleep? — Mathematical Statistics Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090d;--line:rgba(255,255,255,.1);--tx:#e8ecf3;--mut:#8b94a7;--cy:#22d3ee;--bl:#3b82f6;--vi:#8b5cf6;--ok:#34d399;--err:#f87171;--t:.5s cubic-bezier(.2,.7,.2,1)}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;background:var(--bg);color:var(--tx);font:16px/1.6 'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;padding:clamp(20px,5vw,64px) 16px;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(600px 400px at 15% 0,rgba(34,211,238,.12),transparent),radial-gradient(700px 500px at 90% 25%,rgba(139,92,246,.13),transparent),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/48px 48px}
+main{max-width:640px;margin:0 auto;display:grid;gap:22px}
+main>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}main>:nth-child(2){animation-delay:.12s}main>:nth-child(3){animation-delay:.24s}main>:nth-child(4){animation-delay:.34s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;color:var(--cy);font-weight:600}
+h1{font-size:clamp(2rem,7vw,3.1rem);line-height:1.1;font-weight:700;letter-spacing:-.02em;margin:10px 0 14px;background:linear-gradient(120deg,#fff 30%,#a5b4fc 70%,var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:1.1rem;color:#c9d1e0}.exp{color:var(--mut);margin-top:10px}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,32px);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:transform var(--t),border-color var(--t),box-shadow var(--t)}
+.card:hover{border-color:rgba(34,211,238,.35);box-shadow:0 0 40px rgba(34,211,238,.07)}
+h2{font-size:1.15rem;font-weight:600;margin-bottom:16px}
+.rq{border-left:2px solid var(--vi);padding-left:14px;color:#c9d1e0;margin-top:18px}
+label{display:block;font-size:.9rem;color:#c9d1e0;margin:16px 0 6px}
+input{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.35);color:var(--tx);font:inherit;transition:border-color var(--t),box-shadow var(--t)}
+input:focus{outline:none;border-color:var(--cy);box-shadow:0 0 0 3px rgba(34,211,238,.18)}
+input[type=number]{-moz-appearance:textfield}input::-webkit-inner-spin-button,input::-webkit-outer-spin-button{-webkit-appearance:none}
+button{font:inherit;font-weight:600;letter-spacing:.06em;font-size:.85rem;cursor:pointer;border-radius:12px;padding:14px 22px;border:1px solid var(--line);color:var(--tx);background:transparent;position:relative;overflow:hidden;transition:transform var(--t),box-shadow var(--t),border-color var(--t)}
+button:hover{transform:translateY(-2px);border-color:rgba(34,211,238,.5)}button:active{transform:translateY(0) scale(.98)}
+button:focus-visible{outline:2px solid var(--cy);outline-offset:3px}
+.go{width:100%;margin-top:24px;border:0;background:linear-gradient(110deg,var(--bl),var(--vi) 55%,var(--cy));background-size:200% 100%;color:#fff;transition:background-position .7s,transform var(--t),box-shadow var(--t)}
+.go:hover{background-position:100% 0;box-shadow:0 8px 30px rgba(99,102,241,.35)}
+.msg{min-height:0;margin-top:0;padding:0 14px;border-radius:12px;font-size:.92rem;max-height:0;opacity:0;overflow:hidden;transition:all var(--t)}
+.msg.show{max-height:140px;opacity:1;margin-top:16px;padding:12px 14px}
+.msg.ok{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.4);color:var(--ok)}
+.msg.err{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.4);color:var(--err)}
+.count{color:var(--mut);margin-bottom:16px}.count b{color:var(--cy);font-size:1.4rem;margin-left:6px}
+.row{display:flex;gap:12px;flex-wrap:wrap}.row button{flex:1 1 180px}
+.note{color:var(--mut);font-size:.82rem;text-align:center;padding:0 8px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">MATHEMATICAL STATISTICS PROJECT</div>
+    <h1>Does Screen Time Affect Students’ Sleep?</h1>
+    <p class="sub">Help us collect anonymous data for a university statistics project.</p>
+    <p class="exp">We are collecting anonymous data from university students to investigate whether daily screen time is related to sleep duration.</p>
+  </header>
+
+  <section class="card" aria-labelledby="fh">
+    <h2 id="fh">Data collection form</h2>
+    <form id="f" autocomplete="off">
+      <label for="sn">Student Number</label>
+      <input id="sn" type="number" inputmode="numeric" min="1" step="1" required placeholder="Your anonymous student number">
+      <label for="st">Screen Time (hours/day)</label>
+      <input id="st" type="number" inputmode="decimal" min="0" max="24" step="0.1" required placeholder="e.g. 5.5">
+      <label for="sl">Sleep Duration (hours/night)</label>
+      <input id="sl" type="number" inputmode="decimal" min="0" max="24" step="0.1" required placeholder="e.g. 7.5">
+      <button class="go" type="submit">SUBMIT RESPONSE</button>
+      <div id="m1" class="msg" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section class="card" aria-labelledby="dh">
+    <h2 id="dh">DATA MANAGEMENT</h2>
+    <p class="count">Responses collected: <b id="n">0</b></p>
+    <div class="row">
+      <button id="imp" type="button">IMPORT EXCEL</button>
+      <button id="exp" type="button">DOWNLOAD EXCEL</button>
+    </div>
+    <input id="file" type="file" accept=".xlsx,.xls" hidden>
+    <div id="m2" class="msg" role="status" aria-live="polite"></div>
+  </section>
+
+  <p class="note">Your response is anonymous and is used only for a university Mathematical Statistics project.</p>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+const KEY='screenSleepResponses_v1';
+const COLS=['Student','Screen Time (hours/day)','Sleep (hours/night)'];
+const $=id=>document.getElementById(id);
+let rows=load();
+
+function load(){try{const a=JSON.parse(localStorage.getItem(KEY));return Array.isArray(a)?a:[]}catch(e){return[]}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(rows));return true}catch(e){return false}}
+function num(v){v=String(v==null?'':v).trim().replace(',','.');return v!==''&&isFinite(v)?Number(v):NaN}
+function show(id,msg,type){const el=$(id);el.textContent=msg;el.className='msg show '+type}
+function count(){$('n').textContent=rows.length}
+
+// returns {error} or {row:[student,screen,sleep]}
+function validate(sn,st,sl){
+  sn=String(sn==null?'':sn).trim();
+  if(!/^\d{1,12}$/.test(sn))return{error:'Student Number must be a whole number (digits only).'};
+  const t=num(st),l=num(sl);
+  if(!(t>=0&&t<=24))return{error:'Screen time must be a number between 0 and 24 hours.'};
+  if(!(l>=0&&l<=24))return{error:'Sleep duration must be a number between 0 and 24 hours.'};
+  return{row:[Number(sn),Math.round(t*10)/10,Math.round(l*10)/10]};
+}
+function addRow(r){if(rows.some(x=>x[0]===r[0]))return false;rows.push(r);return true}
+
+$('f').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=validate($('sn').value,$('st').value,$('sl').value);
+  if(v.error)return show('m1',v.error,'err');
+  if(!addRow(v.row))return show('m1','This Student Number has already been submitted. Each number can be used only once.','err');
+  if(!save()){rows.pop();return show('m1','Your browser blocked local storage, so the response could not be saved.','err')}
+  $('f').reset();count();show('m1','Thank you! Your response was recorded.','ok');$('sn').focus();
+});
+
+// ---- Excel import ----
+function rowsFromWorkbook(wb){
+  const ws=wb.Sheets['Data']||wb.Sheets[wb.SheetNames[0]];
+  const a=XLSX.utils.sheet_to_json(ws,{header:1,raw:true,blankrows:false});
+  const hd=(a[0]||[]).map(x=>String(x).trim().toLowerCase());
+  let ix=COLS.map(c=>hd.indexOf(c.toLowerCase()));
+  if(ix.includes(-1))ix=[0,1,2];
+  let added=0,dup=0,bad=0;
+  a.slice(1).forEach(r=>{
+    const v=validate(r[ix[0]],r[ix[1]],r[ix[2]]);
+    if(v.error)bad++;else if(addRow(v.row))added++;else dup++;
+  });
+  return{added,dup,bad};
+}
+$('imp').addEventListener('click',()=>$('file').click());
+$('file').addEventListener('change',e=>{
+  const f=e.target.files[0];e.target.value='';if(!f)return;
+  if(typeof XLSX==='undefined')return show('m2','The Excel library could not load. Check your internet connection and reload the page.','err');
+  const rd=new FileReader();
+  rd.onload=()=>{try{
+    const r=rowsFromWorkbook(XLSX.read(rd.result,{type:'array'}));
+    save();count();
+    show('m2',`Imported ${r.added} response(s). Skipped ${r.dup} duplicate Student Number(s) and ${r.bad} invalid row(s).`,r.added?'ok':'err');
+  }catch(err){show('m2','Could not read this file. Please use an .xlsx file with the columns: '+COLS.join(', ')+'.','err')}};
+  rd.onerror=()=>show('m2','Could not read this file.','err');
+  rd.readAsArrayBuffer(f);
+});
+
+// ---- Excel export: Data sheet + Analysis sheet with live formulas (charts are in the data.xlsx template) ----
+function buildWorkbook(){
+  const n=Math.max(rows.length+1,2),X=`Data!B2:B${n}`,Y=`Data!C2:C${n}`;
+  const wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([COLS,...rows]),'Data');
+  const ws=XLSX.utils.aoa_to_sheet([['Statistic','Screen Time (hours/day)','Sleep (hours/night)']]);
+  const F=(ref,f)=>{ws[ref]={t:'n',f}},T=(ref,v)=>{ws[ref]={t:'s',v}};
+  [['n','COUNT'],['Mean','AVERAGE'],['Median','MEDIAN'],['Minimum','MIN'],['Maximum','MAX'],['Standard deviation','_xlfn.STDEV.S'],['Variance','_xlfn.VAR.S']].forEach(([l,fn],i)=>{
+    T('A'+(i+2),l);F('B'+(i+2),`IFERROR(${fn}(${X}),"")`);F('C'+(i+2),`IFERROR(${fn}(${Y}),"")`);
+  });
+  T('A10','Correlation, regression and hypothesis test (H₀: ρ = 0, α = 0.05)');
+  const K=[['Valid pairs (n)',`SUMPRODUCT(--ISNUMBER(${X}),--ISNUMBER(${Y}))`],
+   ['Pearson Correlation (r)',`IF(B11<3,"",IFERROR(CORREL(${X},${Y}),""))`],
+   ['R²',`IF(B11<3,"",IFERROR(RSQ(${Y},${X}),""))`],
+   ['Slope (b)',`IF(B11<3,"",IFERROR(SLOPE(${Y},${X}),""))`],
+   ['Intercept (a)',`IF(B11<3,"",IFERROR(INTERCEPT(${Y},${X}),""))`],
+   ['Regression equation','IF(AND(ISNUMBER(B14),ISNUMBER(B15)),"Sleep = "&TEXT(B15,"0.00")&IF(B14<0," - "," + ")&TEXT(ABS(B14),"0.00")&" × Screen Time","Not enough data")'],
+   ['Degrees of freedom (n − 2)','IF(B11>=3,B11-2,"")'],
+   ['t-statistic','IF(ISNUMBER(B12),IFERROR(B12*SQRT((B11-2)/(1-B12^2)),""),"")'],
+   ['p-value (two-tailed)','IF(ISNUMBER(B18),_xlfn.T.DIST.2T(ABS(B18),B17),"")'],
+   ['Decision (α = 0.05)','IF(ISNUMBER(B19),IF(B19<0.05,"Reject H₀ — statistically significant relationship.","Fail to reject H₀ — no statistically significant relationship."),"Not enough valid data (need at least 3 pairs).")']];
+  K.forEach(([l,f],i)=>{T('A'+(i+11),l);F('B'+(i+11),f)});
+  ws['!ref']='A1:C20';ws['!cols']=[{wch:42},{wch:60},{wch:24}];
+  XLSX.utils.book_append_sheet(wb,ws,'Analysis');
+  wb.Workbook={CalcPr:{fullCalcOnLoad:true}};
+  return wb;
+}
+$('exp').addEventListener('click',()=>{
+  if(typeof XLSX==='undefined')return show('m2','The Excel library could not load. Check your internet connection and reload the page.','err');
+  try{XLSX.writeFile(buildWorkbook(),'data.xlsx');show('m2',`Downloaded data.xlsx with ${rows.length} response(s).`,'ok')}
+  catch(err){show('m2','Could not create the Excel file.','err')}
+});
+
+// ---- subtle 3D tilt (pointer devices only) ----
+if(matchMedia('(hover:hover)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  document.querySelectorAll('.card').forEach(c=>{
+    c.addEventListener('pointermove',e=>{const b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;c.style.transform=`perspective(900px) rotateX(${(-y*2.5).toFixed(2)}deg) rotateY(${(x*2.5).toFixed(2)}deg)`});
+    c.addEventListener('pointerleave',()=>{c.style.transform=''});
+  });
+}
+count();
+</script>
+</body>
+</html>
